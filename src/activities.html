@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <meta charset="utf-8">
     <title>cyberfig's ~/PicoCTF2023</title>
     
@@ -9,16 +9,17 @@
 <body>
     <section class="header">
         <div class="nav_links">
-            <a class="link-nav" href="index.html">whoami</a>
+            <a class="link-nav" href="/index.html">whoami</a>
             <a class="link-nav" href="activities.html">activities</a>
-            <a class="link-nav" href="">projects</a>
+            <a class="link-nav" href="projects.html">projects</a>
         </div>
     </section>
 
     <div class="challenges-container">
         <div class="challenge-box">
             <div class="challenge-header">
-                <div class="challenge-info" onclick="toggleWriteup('writeup1', 'gates-are-closed-writeup.txt')">
+                <div class="challenge-info" onclick="toggleWriteup('writeup1', '/src/gates-are-closed-writeup.txt')">
+
                     <div class="challenge-title">gates_are_closed</div>
                     <div class="challenge-meta">web | Dec 13, 2023</div>
                 </div>
@@ -48,7 +49,7 @@
             // If content hasn't been loaded yet
             if (!loadedWriteups[writeupId]) {
                 try {
-                    const response = await fetch('src/gates-are-closed-writeup.txt');
+                    const response = await fetch('gates-are-closed-writeup.txt');
                     const text = await response.text();
                     writeupDiv.textContent = text;
                     loadedWriteups[writeupId] = true;
