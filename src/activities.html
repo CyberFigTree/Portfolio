@@ -1,72 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <meta charset="utf-8">
     <title>cyberfig's ~/PicoCTF2023</title>
-    <style>
-        .challenges-container {
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 20px;
-        }
-
-        .challenge-box {
-            border: 1px solid #FF8AD8;
-            margin-bottom: 1em;
-            background-color: #ffffff10;
-        }
-
-        .challenge-header {
-            padding: 1em;
-            color: #FF8AD8;
-            font-family: 'Source Code Pro', monospace;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;  /* Changed to align-items: flex-start */
-        }
-
-        .challenge-info {
-            flex-grow: 1;
-            cursor: pointer;
-        }
-
-        .challenge-title {
-            font-size: 1.2em;
-        }
-
-        .challenge-meta {
-            font-size: 0.8em;
-            color: #fd00a9;
-            margin-top: 0.5em;
-        }
-
-        .close-button {
-            color: #FF8AD8;
-            cursor: pointer;
-            font-family: 'Source Code Pro', monospace;
-            padding: 0 10px;
-            font-size: 1.2em;
-            transition: color 0.3s;
-            margin-top: 3px;  /* Added to align with title */
-        }
-
-        .close-button:hover {
-            color: #fd00a9;
-        }
-
-        .writeup {
-            display: none;
-            padding: 2em;
-            white-space: pre-wrap;
-            font-family: 'Source Code Pro', monospace;
-            line-height: 1.6;
-        }
-
-        .writeup.active {
-            display: block;
-        }
-    </style>
+    
 </head>
 <body>
     <section class="header">
@@ -110,7 +48,7 @@
             // If content hasn't been loaded yet
             if (!loadedWriteups[writeupId]) {
                 try {
-                    const response = await fetch(filename);
+                    const response = await fetch('src/gates-are-closed-writeup.txt');
                     const text = await response.text();
                     writeupDiv.textContent = text;
                     loadedWriteups[writeupId] = true;
