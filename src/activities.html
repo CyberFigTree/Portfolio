@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <title>cyberfig's ~/PicoCTF2023</title>
+    <style>
+        .challenges-container {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 20px;
+        }
+
+        .challenge-box {
+            border: 1px solid #FF8AD8;
+            margin-bottom: 1em;
+            background-color: #ffffff10;
+        }
+
+        .challenge-header {
+            padding: 1em;
+            color: #FF8AD8;
+            font-family: 'Source Code Pro', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;  /* Changed to align-items: flex-start */
+        }
+
+        .challenge-info {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .challenge-title {
+            font-size: 1.2em;
+        }
+
+        .challenge-meta {
+            font-size: 0.8em;
+            color: #fd00a9;
+            margin-top: 0.5em;
+        }
+
+        .close-button {
+            color: #FF8AD8;
+            cursor: pointer;
+            font-family: 'Source Code Pro', monospace;
+            padding: 0 10px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+            margin-top: 3px;  /* Added to align with title */
+        }
+
+        .close-button:hover {
+            color: #fd00a9;
+        }
+
+        .writeup {
+            display: none;
+            padding: 2em;
+            white-space: pre-wrap;
+            font-family: 'Source Code Pro', monospace;
+            line-height: 1.6;
+        }
+
+        .writeup.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section class="header">
+        <div class="nav_links">
+            <a class="link-nav" href="index.html">whoami</a>
+            <a class="link-nav" href="activities.html">activities</a>
+            <a class="link-nav" href="">projects</a>
+        </div>
+    </section>
+
+    <div class="challenges-container">
+        <div class="challenge-box">
+            <div class="challenge-header">
+                <div class="challenge-info" onclick="toggleWriteup('writeup1', 'gates-are-closed-writeup.txt')">
+                    <div class="challenge-title">gates_are_closed</div>
+                    <div class="challenge-meta">web | Dec 13, 2023</div>
+                </div>
+                <div class="close-button" onclick="closeWriteup('writeup1')">×</div>
+            </div>
+            <div class="writeup" id="writeup1"></div>
+        </div>
+
+        <div class="challenge-box">
+            <div class="challenge-header">
+                <div class="challenge-info" onclick="toggleWriteup('writeup2', 'another-writeup.txt')">
+                    <div class="challenge-title">another_challenge</div>
+                    <div class="challenge-meta">crypto | Dec 14, 2023</div>
+                </div>
+                <div class="close-button" onclick="closeWriteup('writeup2')">×</div>
+            </div>
+            <div class="writeup" id="writeup2"></div>
+        </div>
+    </div>
+
+    <script>
+        let loadedWriteups = {};
+
+        async function toggleWriteup(writeupId, filename) {
+            const writeupDiv = document.getElementById(writeupId);
+            
+            // If content hasn't been loaded yet
+            if (!loadedWriteups[writeupId]) {
+                try {
+                    const response = await fetch(filename);
+                    const text = await response.text();
+                    writeupDiv.textContent = text;
+                    loadedWriteups[writeupId] = true;
+                } catch (error) {
+                    console.error('Error loading writeup:', error);
+                    writeupDiv.textContent = 'Error loading writeup';
+                    return;
+                }
+            }
+
+            // Toggle visibility
+            if (writeupDiv.classList.contains('active')) {
+                writeupDiv.classList.remove('active');
+            } else {
+                // Hide all other writeups
+                document.querySelectorAll('.writeup').forEach(div => {
+                    div.classList.remove('active');
+                });
+                writeupDiv.classList.add('active');
+            }
+        }
+
+        function closeWriteup(writeupId) {
+            const writeupDiv = document.getElementById(writeupId);
+            writeupDiv.classList.remove('active');
+        }
+    </script>
+</body>
+</html>

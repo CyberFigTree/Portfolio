@@ -1,0 +1,22 @@
+# macOS system files
+.DS_Store
+
+# VSCode settings
+.vscode/
+
+# Server-related files
+Server_stuff/
+database/
+lib/
+
+# Python compiled files
+*.pyc
+__pycache__/
+
+# Specific files to ignore
+src/connect.py
+src/picoctf2023.html
+
+# Other temporary or unwanted files
+*.log
+*.tmp

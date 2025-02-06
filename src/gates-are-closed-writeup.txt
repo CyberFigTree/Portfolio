@@ -1,0 +1,82 @@
+-----------------------------------------------------------------------------
+CTF Challenge Write-up: "The Gates Are Closed"
+
+Challenge Description:
+We were given a binary file named 'the-gates-are-closed'. The task was to inspect and analyze this file to find the hidden flag.
+
+Step-by-Step Solution:
+
+Step 1: Identify the File Type
+
+    Command:
+    $ file the-gates-are-closed
+
+    Output:
+    the-gates-are-closed: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=..., for GNU/Linux 3.2.0, not stripped
+    
+    - It’s a 64-bit ELF executable, dynamically linked, meaning it loads shared libraries during runtime.
+    - The file wasn’t stripped, so symbol names are available, making reverse engineering easier.
+
+2. Check File Permissions and Make It Executable?
+
+    Commands:
+    $ ls -l the-gates-are-closed
+    $ chmod +x the-gates-are-closed
+    - The file initially wasn’t executable. After changing permissions, I tried running it:
+    $ ./the-gates-are-closed
+
+    Output:
+    zsh: exec format error: ./the-gates-are-closed
+
+3. Load the File in radare2 for Analysis
+
+    Commands:
+    $ r2 the-gates-are-closed
+    > aaa
+
+    - This command performs full analysis, identifying functions, symbols, and references.
+
+4. Listed Available Functions:
+
+    Command:
+    > afl
+
+    Output:
+    0x00001060    1     33 entry0
+    0x00001149    1     22 sym.secretfunction
+    0x0000115f    1     31 main
+    - Found the usual 'main' function and an interesting 'secretfunction'
+
+5. Analyzed main Function:
+    Command:
+    > pdf @ sym.main
+
+    Output:
+    lea rax, str.Nothing_is_going_on_here..._:D
+    call sym.imp.printf
+
+    - 'main' prints a message: "Nothing is going on here... :D". This suggested that the real logic might be in 'secretfunction'
+
+6. Analyze secretfunction:
+
+    Command:
+    > pdf @ sym.secretfunction
+    Output:
+    lea rax, str.TklDQ3s0X1IzNGxfRmw0Z30=
+    call sym.imp.puts
+
+    - 'secretfunction' prints the string: TklDQ3s0X1IzNGxfRmw0Z30=
+
+7. Decode the String
+    - The string 'TklDQ3s0X1IzNGxfRmw0Z30=' looks like Base64
+    
+    Command:
+    > echo "TklDQ3s0X1IzNGxfRmw0Z30=" | base64 -d 
+    Output:
+    NICC{4_R34l_Fl4g}
+
+Flag:
+NICC{4_R34l_Fl4g}
+
+Conclusion:
+This challenge involved analyzing an ELF binary. 'main' function printed a misleading message, but deeper analysis of 'secretfunction' revealed a Base64-encoded string, which contained the flag after decoding.
