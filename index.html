@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="/styles.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Code Pro,Source Sans">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik Glitch, Rubik">
-        <meta charset="utf-8">
-        <title>~/home</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>~/home</title>
 
-    <body>
-        <div class="wrapper">
+    <!-- If styles.css is in the project root: -->
+    <link rel="stylesheet" href="/styles.css">
 
-            <section class ="header">
-                <div class ="nav_links">
-                    <a class="link-nav" href="index.html#about">whoami</a>
-                    <a class="link-nav" href="src/activities.html">activities</a>
-                    <a class="link-nav" href="src/projects.html">projects</a>
-                    
-                </div>
-            </section>
+    <!-- Google Fonts (note: spaces in font names usually become plus signs or separate link tags) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik+Glitch|Rubik">
+</head>
+<body>
+    <div class="wrapper">
 
-            <section id="landing">
-                <div>
-                     <div>
-                        <p>---------------------------------------------------------------------|_|o|x|</p>
-                        <p>Hi there, I'm cyberfig. It is nice to welcome you in my cyberspace!</p>
-                        <p>I am a final year Cybersecurity student at University of Queensland.</p>
-                        <p>Applicable courses I've done so far as a part of my degree:</p>
-                        <list>
-                            <ul>COMP3320 - Vulnerability Assessment and Penetration Testing</ul>
-                            <ul>COMS3200 - Network Security I</ul>
-                            <ul>CYBR3000 - Information Security</ul>
-                            <ul>CSSE2310 - Computer Systems Principles and Programming</ul>
-                            <ul>INFS3208 - Cloud Computing</ul>
-                        </list>
-                        <p>----------------------------------------------------------------------------</p>
-                     </div>
-                    <div>
-                        <p> Some other courses I chose as electives:</p>
-                        <list>
-                            <ul>INFS2200 - Relational Database Systems</ul>
-                            <ul>INFS3200 - Advanced Database Systems</ul>
-                            <ul>INFS4205 - Advanced Techniques for High Dimensional Data</ul>
-                        </list>
-                    </div>
-                    <p>----------------------------------------------------------------------------</p>
-                </div>
-            </div>
+        <!-- Header Navigation -->
+        <section class="header">
+            <div class="nav_links">
+                <!-- If index.html is in the same folder, you can do this: -->
+                <a class="link-nav" href="index.html#about">whoami</a>
+                
+                <!-- If activities.html is also in the same folder, remove "src/": -->
+                <a class="link-nav" href="activities.html">activities</a>
+                <a class="link-nav" href="projects.html">projects</a>
             </div>
         </section>
 
-        </div>
-    </div>
-    </body>
+        <!-- Landing Section -->
+        <section id="landing">
+            <div>
+                <p>---------------------------------------------------------------------|_|o|x|</p>
+                <p>Hi there, I'm cyberfig. It is nice to welcome you to my cyberspace!</p>
+                <p>I am a final year Cybersecurity student at University of Queensland.</p>
+                <p>Applicable courses I've done so far as a part of my degree:</p>
+                
+                <!-- Instead of <list>, just use <ul> and <li> -->
+                <ul>
+                    <ul>COMP3320 - Vulnerability Assessment and Penetration Testing</ul>
+                    <ul>COMS3200 - Network Security I</ul>
+                    <ul>CYBR3000 - Information Security</ul>
+                    <ul>CSSE2310 - Computer Systems Principles and Programming</ul>
+                    <ul>INFS3208 - Cloud Computing</ul>
+                </ul>
+
+                <p>----------------------------------------------------------------------------</p>
+
+                <p>Some other courses I chose as electives:</p>
+                <ul>
+                    <ul>INFS2200 - Relational Database Systems</ul>
+                    <ul>INFS3200 - Advanced Database Systems</ul>
+                    <ul>INFS4205 - Advanced Techniques for High Dimensional Data</ul>
+                    <ul>CRIM1000 - Introduction to Criminology</ul>
+                    <ul>CRIM1019 - Introduction to Justice System</ul>
+                </ul>
+
+                <p>----------------------------------------------------------------------------</p>
+            </div>
+        </section>
+
+    </div> <!-- end wrapper -->
+</body>
 </html>

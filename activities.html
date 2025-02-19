@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../styles.css">
+    <!-- If this file is in the same folder as styles.css: -->
+    <link rel="stylesheet" href="styles.css">
     <meta charset="utf-8">
     <title>cyberfig's ~/PicoCTF2023</title>
-    
 </head>
 <body>
     <section class="header">
         <div class="nav_links">
-            <a class="link-nav" href="/index.html">whoami</a>
+            <!-- If everything is in the same folder, no leading slash needed: -->
+            <a class="link-nav" href="index.html">whoami</a>
             <a class="link-nav" href="activities.html">activities</a>
             <a class="link-nav" href="projects.html">projects</a>
         </div>
@@ -18,8 +19,7 @@
     <div class="challenges-container">
         <div class="challenge-box">
             <div class="challenge-header">
-                <div class="challenge-info" onclick="toggleWriteup('writeup1', '/src/gates-are-closed-writeup.txt')">
-
+                <div class="challenge-info" onclick="toggleWriteup('writeup1', 'gates-are-closed-writeup.txt')">
                     <div class="challenge-title">gates_are_closed</div>
                     <div class="challenge-meta">web | Dec 13, 2023</div>
                 </div>
@@ -45,11 +45,12 @@
 
         async function toggleWriteup(writeupId, filename) {
             const writeupDiv = document.getElementById(writeupId);
-            
+
             // If content hasn't been loaded yet
             if (!loadedWriteups[writeupId]) {
                 try {
-                    const response = await fetch('gates-are-closed-writeup.txt');
+                    // Use the passed-in filename:
+                    const response = await fetch(filename);
                     const text = await response.text();
                     writeupDiv.textContent = text;
                     loadedWriteups[writeupId] = true;

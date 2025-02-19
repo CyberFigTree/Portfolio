@@ -1,4 +1,5 @@
 -----------------------------------------------------------------------------
+
 CTF Challenge Write-up: "The Gates Are Closed"
 
 Challenge Description:

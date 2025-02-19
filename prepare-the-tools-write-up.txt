@@ -1,0 +1,35 @@
+-----------------------------------------------------------------------------
+
+CTF Challenge Write-up: "Prepare the Tools"
+
+Challenge Description: We were provided with a .pcapng file containing network traffic. The task was to inspect and analyze this file in order to locate and reconstruct a fragmented flag hidden across multiple TCP packets.
+
+Step-by-Step Solution:
+
+Step 1: Initial Inspection of the File
+    - Opened the .pcapng file in Wireshark for a general overview of the captured network traffic.
+    - Noticed various TCP connections and found “flag[xxxx]” labels indicating fragmented flag pieces scattered among the packets.
+
+Step 2: Filter Relevant Packets
+    - Applied the Wireshark display filter:
+        tcp contains "flag"
+    - This revealed a large number of packets containing partial flag data, all numbered (e.g., flag[0004], flag[0006], etc.).
+
+Step 3: Follow the TCP Stream
+    - Selected the first filtered packet and used “Follow TCP Stream” to see the context of the fragmented data.
+    - Most of the relevant communication was between 10.133.64.69:8082 and 10.133.64.21:55226.
+
+Step 4: Display Data in ASCII
+    - Changed the Wireshark view to ASCII to read the packet payloads more easily.
+    - Observed sequences of jumbled text labeled by individual flag[xxxx] tags.
+
+Step 5: Reorder the Flag Fragments
+    - Checked for the earliest fragments (flag[0000], flag[0001], etc.) to confirm a contiguous sequence existed.
+    - Used a short Python script to parse each packet’s label (e.g., flag[0004]) and reassemble them in the correct order.
+
+Step 6: Decode and Obtain the Final Flag
+    - Once reordered, the combined text formed a coherent message referencing a Harry Potter excerpt. Embedded within was the completed flag.
+
+Flag: CJ{warm_up_for_your_scapy/pyshark/tshark}
+
+Conclusion: This challenge demonstrated how to use Wireshark’s filters, stream following, and ASCII display mode to locate dispersed fragments of a flag. By scripting the reorder of these fragments, we successfully reconstructed and decoded the hidden flag from the network capture.
