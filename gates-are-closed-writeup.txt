@@ -1,7 +1,3 @@
------------------------------------------------------------------------------
-
-CTF Challenge Write-up: "The Gates Are Closed"
-
 Challenge Description:
 We were given a binary file named 'the-gates-are-closed'. The task was to inspect and analyze this file to find the hidden flag.
 

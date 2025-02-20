@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- If this file is in the same folder as styles.css: -->
     <link rel="stylesheet" href="/styles.css">
     <meta charset="utf-8">
-    <title>cyberfig's ~/PicoCTF2023</title>
+    <script src="/js/scripts.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik+Glitch|Rubik">
+    <title>~/home/activities</title>
+
 </head>
 <body>
     <section class="header">
@@ -23,60 +26,26 @@
                     <div class="challenge-title">gates_are_closed</div>
                     <div class="challenge-meta">web | Dec 13, 2023</div>
                 </div>
-                <div class="close-button" onclick="closeWriteup('writeup1')">×</div>
+                <div class="close-button" onclick="toggleWriteup('writeup1', 'gates-are-closed-writeup.txt')"></div>
             </div>
             <div class="writeup" id="writeup1"></div>
         </div>
-
+    
         <div class="challenge-box">
             <div class="challenge-header">
                 <div class="challenge-info" onclick="toggleWriteup('writeup2', 'prepare-the-tools-write-up.txt')">
                     <div class="challenge-title">prepare_the_tools</div>
                     <div class="challenge-meta">forensics | Dec 14, 2023</div>
                 </div>
-                <div class="close-button" onclick="closeWriteup('writeup2')">×</div>
+                <div class="close-button" onclick="toggleWriteup('writeup2', 'prepare-the-tools-write-up.txt')"></div>
             </div>
             <div class="writeup" id="writeup2"></div>
         </div>
     </div>
+    
+            
+        </div>
+    </div>
 
-    <script>
-        let loadedWriteups = {};
-
-        async function toggleWriteup(writeupId, filename) {
-            const writeupDiv = document.getElementById(writeupId);
-
-            // If content hasn't been loaded yet
-            if (!loadedWriteups[writeupId]) {
-                try {
-                    // Use the passed-in filename:
-                    const response = await fetch(filename);
-                    const text = await response.text();
-                    writeupDiv.textContent = text;
-                    loadedWriteups[writeupId] = true;
-                } catch (error) {
-                    console.error('Error loading writeup:', error);
-                    writeupDiv.textContent = 'Error loading writeup';
-                    return;
-                }
-            }
-
-            // Toggle visibility
-            if (writeupDiv.classList.contains('active')) {
-                writeupDiv.classList.remove('active');
-            } else {
-                // Hide all other writeups
-                document.querySelectorAll('.writeup').forEach(div => {
-                    div.classList.remove('active');
-                });
-                writeupDiv.classList.add('active');
-            }
-        }
-
-        function closeWriteup(writeupId) {
-            const writeupDiv = document.getElementById(writeupId);
-            writeupDiv.classList.remove('active');
-        }
-    </script>
 </body>
 </html>

@@ -1,5 +1,3 @@
------------------------------------------------------------------------------
-
 CTF Challenge Write-up: "Prepare the Tools"
 
 Challenge Description: We were provided with a .pcapng file containing network traffic. The task was to inspect and analyze this file in order to locate and reconstruct a fragmented flag hidden across multiple TCP packets.

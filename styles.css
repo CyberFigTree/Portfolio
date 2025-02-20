@@ -1,27 +1,35 @@
+:root {
+    --primary-color: #FF8AD8;
+    --secondary-color: #fd00a9;
+    --background-color: whitesmoke;
+    --font: Source Code Pro,Source Sans;
+}
+
 * {
+    margin: 0;
+    padding: 0;
     font-family: Source Code Pro,Source Sans;
     background-color: whitesmoke;
     color: #FF8AD8;
 }
 
-
 body {
-    /* background-color: rgba(0, 0, 0, 0.88); */
+    background: var(--background-color);
+    font-family: var(--font);
+    justify-content: center;
     width: 100vw;
     height: 100vh;
-    
     /* border: 0 solid rgba(0, 0, 0, 0.85); */
     border-bottom-width: 0px;
     border-bottom-width: 2px;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 .nav_links{
-    color: #FF8AD8;
+    color: var(--primary-color);
     font-size: 24px;
     height: 60px;
     overflow: hidden;
@@ -34,60 +42,30 @@ body {
     text-align: center;
     padding: 18px 26px;
     text-decoration: none;
+    color: var(--primary-color);
 }
 
 .nav_links a:hover {
-    color: #fd00a9;
+    color: var(--secondary-color);
 }
 
-.nav_links :active {
-    color: #fd00a9;
+.nav_links a.active {
+    color: var(--secondary-color);
 }
 a:link:active, a:visited:active {
-    color:#fd00a9;
+    color: var(--secondary-color);
 }
 
 .button {
-    color: #FF8AD8;
+    color: var(--primary-color);
     padding: 1em 2em;
     font-size: 24px;
     text-transform: uppercase;
     text-decoration: none;
-    border: 0.1em solid #FF8AD8;
+    border: 0.1em solid var(--primary-color);
     border-radius: 1px;
     transition: background-color 0.3s;
-}
-
-.button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-
-.button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-    border: none;
-  }
-  
-  .button:hover span {
-    padding-right: 25px;
-  }
-  
-  .button:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-
-.button:hover {
-    cursor: pointer;
-    background-color: #FF8AD8; /* Darker shade when hovering */
-    color: whitesmoke;
+    margin-left: auto;
 }
 
 #landing {
@@ -97,27 +75,8 @@ a:link:active, a:visited:active {
     height:35em;
 }
 
-.wrapper #running_text {
-    white-space: nowrap;
-    height: 5rem;
-}
-
-#running_text {
-    display: flex;
-    overflow: auto; /**/
-
-    width: 100%;
-    height:5rem;
-}
-
-#about {
-    display: flex;
-    
-    height:45em;
-}
-
 h1 {
-    color:#FF8AD8;
+    color:var(--primary-color);
 }
 
 .level_description h1 {
@@ -146,56 +105,89 @@ h1 {
 }
 
 .challenges-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 2em auto;
-    padding: 20px;
+    padding: 5px 20px;
 }
 
 .challenge-box {
-    border: 1px solid #FF8AD8;
+    max-width: 1000px;
+    background-color: white; /* White background */
+    color: var(--primary-color);
+    font-family: "Source Code Pro", monospace;
+    padding: 5px 20px;
     margin-bottom: 1em;
-    background-color: #ffffff10;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    /* Align text to start from the top left */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .challenge-header {
-    padding: 1em;
-    color: #FF8AD8;
-    font-family: 'Source Code Pro', monospace;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;  /* Changed to align-items: flex-start */
+    justify-content: space-between; /* Ensures left and right alignment */
+    align-items: center; /* Align items vertically */
+    width: 100%; /* Ensure full width usage */
+    padding: 0.8em 1em;
+    background-color: white;
 }
 
 .challenge-info {
-    flex-grow: 1;
+    flex-grow: 1; /* Allows the title section to take up available space */
     cursor: pointer;
+    background-color: white;
 }
 
 .challenge-title {
     font-size: 1.2em;
+    background-color: white;
+}
+
+.close-button {
+    color: var(--primary-color);
+    background-color: white;
+    cursor: pointer;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0 10px;
+    margin-left: auto;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+/* When active, change to X */
+.close-button.active::before {
+    content: "×";
+}
+
+.close-button:hover {
+    color: var(--secondary-color);
+}
+
+.close-button::before {
+    content: "▾"; /* Default to a down arrow */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.close-button.active::before {
+    content: "×"; /* Change to 'X' when active */
 }
 
 .challenge-meta {
     font-size: 0.8em;
-    color: #fd00a9;
+    color: var(--secondary-color);
+    background-color: white;
     margin-top: 0.5em;
 }
 
-.close-button {
-    color: #FF8AD8;
-    cursor: pointer;
-    font-family: 'Source Code Pro', monospace;
-    padding: 0 10px;
-    font-size: 1.2em;
-    transition: color 0.3s;
-    margin-top: 3px;  /* Added to align with title */
-}
-
-.close-button:hover {
-    color: #fd00a9;
-}
-
 .writeup {
+    background-color: white;
     display: none;
     padding: 2em;
     white-space: pre-wrap;
@@ -203,57 +195,60 @@ h1 {
     line-height: 1.6;
 }
 
+/* When a writeup is expanded, make it look like a terminal */
 .writeup.active {
+    background-color: white; /* Terminal-style background */
+    color: var(--primary-color);
     display: block;
+    padding: 15px;
+    font-family: "Source Code Pro", monospace;
+    
+    white-space: pre-wrap;
+    line-height: 1.5;
+    word-wrap: break-word;
 }
 
-/* 
-#timeline {
+.screen-container {
+    width: 90%;
+    max-width: 900px;
+    height: 450px;
+    background-color: white; /* White background */
+    color: var(--primary-color);
+    font-family: "Source Code Pro", monospace;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    
+    /* Align text to start from the top left */
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2em;
-    background-color: whitesmoke; /* Matches the website background 
-    color: #FF8AD8;  /* Matches the existing color scheme 
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden; /* Prevents scrolling */
 }
 
-
-.timeline-container {
-    width: 80%;
-    border-left: 2px solid #FF8AD8;
-    padding-left: 20px;
-    position: relative;
-}
-
-.timeline-item {
-    margin: 20px 0;
-    position: relative;
-}
-
-.timeline-date {
-    font-weight: bold;
-    color: #FF8AD8;
+/* Ensure the text starts from the top */
+#typing-text {
     font-size: 1.2em;
-    margin-bottom: 5px;
+    background-color: white;
+    color: var(--primary-color);
+    text-shadow: none; /* No glow */
+    text-align: left;
+    white-space: pre-wrap; /* Allows new lines */
+    overflow: hidden;
 }
 
-.timeline-content {
-    background-color: #fff;
-    padding: 1em;
-    border: 1px solid #FF8AD8;
-    border-radius: 5px;
-    transition: transform 0.3s;
+/* Cursor (blinking but no glow) */
+#typing-text::after {
+    content: "▐";
+    display: inline-block;
+    margin-left: 5px;
+    animation: blink 0.8s step-end infinite;
+    font-weight: normal;
+    font-size: 0.9em;
 }
 
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 10px;
-    width: 10px;
-    height: 10px;
-    background-color: #FF8AD8;
-    border-radius: 50%;
+/* Cursor blinking animation */
+@keyframes blink {
+    50% { opacity: 0; }
 }
-
-*/
